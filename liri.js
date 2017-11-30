@@ -9,6 +9,7 @@ var Twitter = require('twitter')
 var nodeArgs = process.argv;
 var movieName = "";
 var songTitle = "";
+var commands = "";
 
 
 
@@ -26,6 +27,14 @@ for (var i = 3; i < nodeArgs.length; i++) {
     songTitle += nodeArgs[i];
   }
 }
+//  Log Command to Log.txt
+
+for (var i = 2; i < nodeArgs.length; i++) {
+  commands = commands + " " + nodeArgs[i];
+}
+
+fs.appendFileSync('log.txt', "Command entered: " + commands + "\n")
+
 // Function for Spotify
 
 function getSong(){
@@ -59,8 +68,6 @@ function getSong(){
 
 // Function for Twitter
 
-
-
 function getTweets(){
 var twitterKeys = require("./keys.js");
 
@@ -84,6 +91,7 @@ var twitterKeys = require("./keys.js");
 };
 
 //Function OMDB API
+
 function getMovie() {
      if (inTwo === undefined) {
           movieName = "Mr Nobody";
